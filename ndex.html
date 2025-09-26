@@ -17,14 +17,16 @@
 </head>
 <body>
 <script>
-    // Forcer le reload à chaque ouverture
-    window.onload = () => {
+    // Fonction pour forcer le reload complet sans cache
+    (function() {
         const url = new URL(window.location.href);
-        url.searchParams.set('nocache', Date.now());
-        if (!window.location.href.includes('nocache')) {
-            window.location.href = url.toString();
+
+        // Ajouter paramètre unique pour éviter le cache
+        if (!url.searchParams.has('nocache')) {
+            url.searchParams.set('nocache', Date.now());
+            window.location.replace(url.toString()); // reload propre, remplace l'URL dans l'historique
         }
-    };
+    })();
 </script>
 </body>
 </html>
