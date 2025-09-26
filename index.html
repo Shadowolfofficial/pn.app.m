@@ -20,33 +20,9 @@
 </head>
 <body>
 <script>
-    // Paramètres
-    const redirectUrl = "https://0421691k.index-education.net/pronote/"; 
-    let blockEnabled = false; // true = blocage activé, false = désactivé
-    const blockStartHour = 22; // début 
-    const blockEndHour = 8;    // fin 
-
-    function checkTimeBlock() {
-        if (!blockEnabled) return false;
-
-        const now = new Date();
-        const hour = now.getHours();
-
-        // Blocage si entre 22h et 8h
-        if (blockStartHour > blockEndHour) {
-            return hour >= blockStartHour || hour < blockEndHour;
-        } else {
-            return hour >= blockStartHour && hour < blockEndHour;
-        }
-    }
-
-    if (checkTimeBlock()) {
-        // Page blanche
-        document.body.innerHTML = "";
-    } else {
-        // Redirection
-        window.location.href = redirectUrl;
-    }
+    // URL vers laquelle rediriger
+    const redirectUrl = "https://0421691k.index-education.net/pronote/";
+    window.location.href = redirectUrl;
 </script>
 </body>
 </html>
