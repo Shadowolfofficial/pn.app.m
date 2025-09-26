@@ -16,5 +16,15 @@
     </style>
 </head>
 <body>
+<script>
+    // Forcer le reload à chaque ouverture
+    window.onload = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('nocache', Date.now());
+        if (!window.location.href.includes('nocache')) {
+            window.location.href = url.toString();
+        }
+    };
+</script>
 </body>
 </html>
