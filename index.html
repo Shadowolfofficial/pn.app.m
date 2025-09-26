@@ -4,13 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>PRONOTE</title>
-  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#000000">
   <script>
+    // -----------------------
+    // ⚙️ Paramètres
+    // -----------------------
     const activerRedirection = true;   // false - true
-    const activerBlocageHeure = false;  // false - true
+    const activerBlocageHeure = false; // false - true
     const heureDebutBlocage = 22;      // début
-    const heureFinBlocage = 8;         // fin 
+    const heureFinBlocage = 8;         // fin
     const urlRedirection = "https://0421691k.index-education.net/pronote/"; 
 
     function estDansPlageHoraire(heure) {
@@ -22,32 +24,21 @@
     }
 
     window.addEventListener("load", () => {
-      try {
-        const now = new Date();
-        const heureActuelle = now.getHours();
+      const now = new Date();
+      const heureActuelle = now.getHours();
 
-        if (activerBlocageHeure && estDansPlageHoraire(heureActuelle)) {
-          document.documentElement.style.height = "100%";
-          document.body.style.margin = "0";
-          document.body.style.height = "100%";
-          return;
-        }
+      if (activerBlocageHeure && estDansPlageHoraire(heureActuelle)) {
+        document.body.innerHTML = ""; // page blanche
+        return;
+      }
 
-        if (activerRedirection) {
-          window.location.replace(urlRedirection);
-        }
-      } catch (e) {
-        console.error(e);
+      if (activerRedirection) {
+        window.location.replace(urlRedirection);
       }
     });
-
-    // Enregistrement du service worker pour PWA (installation sur écran d'accueil)
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js").catch(() => { /* silent */ });
-    }
   </script>
   <style>
-    html, body { background: #ffffff; width: 100%; height: 100%; }
+    html, body { background: #ffffff; width: 100%; height: 100%; margin: 0; }
   </style>
 </head>
 <body>
