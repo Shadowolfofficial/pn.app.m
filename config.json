@@ -1,5 +1,5 @@
 {
-  "activerRedirection": false,
+  "activerRedirection": true,
   "activerBlocageHeure": false,
   "heureDebutBlocage": 22,
   "heureFinBlocage": 8,
