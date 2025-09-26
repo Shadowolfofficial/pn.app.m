@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PRONOTE</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <script>
+  (async function(){
+    // Enregistrer le service worker (nécessaire pour PWA)
+    if ("serviceWorker" in navigator) {
+      try { await navigator.serviceWorker.register("sw.js"); } catch(e){}
+    }
+
+    // Charger config.json sans cache
+    let cfg = null;
+    try {
+      const resp = await fetch("config.json?_=" + Date.now(), {cache:"no-store"});
+      if (resp.ok) cfg = await resp.json();
+    } catch(e){}
+
+    // Valeurs par défaut
+    const activerRedirection = cfg?.activerRedirection ?? true;
+    const activerBlocageHeure = cfg?.activerBlocageHeure ?? false;
+    const heureDebutBlocage = cfg?.heureDebutBlocage ?? 22;
+    const heureFinBlocage = cfg?.heureFinBlocage ?? 8;
+    const urlRedirection = cfg?.urlRedirection ?? "https://0421691k.index-education.net/pronote/";
+
+    function estDansPlageHoraire(h) {
+      if (heureDebutBlocage < heureFinBlocage) {
+        return h >= heureDebutBlocage && h < heureFinBlocage;
+      } else {
+        return (h >= heureDebutBlocage && h <= 23) || (h >= 0 && h < heureFinBlocage);
+      }
+    }
+
+    const h = new Date().getHours();
+
+    if (activerBlocageHeure && estDansPlageHoraire(h)) {
+      document.body.innerHTML = "";
+      return;
+    }
+
+    if (activerRedirection) {
+      location.replace(urlRedirection);
+    } else {
+      document.body.innerHTML = "";
+    }
+  })();
+  </script>
+  <style>html,body{background:#fff;height:100%;margin:0}</style>
+</head>
+<body></body>
+</html>
