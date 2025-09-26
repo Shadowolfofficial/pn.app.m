@@ -51,8 +51,20 @@
     <button class="open-btn" onclick="openPronote()">Ouvrir PRONOTE</button>
 
     <script>
+        // Forcer le reload à chaque ouverture
+        window.onload = () => {
+            // Ajoute un paramètre unique pour éviter le cache
+            const url = new URL(window.location.href);
+            url.searchParams.set('nocache', Date.now());
+            if (!window.location.href.includes('nocache')) {
+                window.location.href = url.toString();
+            }
+        };
+
         function openPronote() {
-            window.location.href = "https://0421691k.index-education.net/pronote/";
+            // Redirection vers Pronote avec paramètre anti-cache
+            const url = "https://0421691k.index-education.net/pronote/?nocache=" + Date.now();
+            window.location.href = url;
         }
     </script>
 </body>
