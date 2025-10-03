@@ -1,71 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRONOTE</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="manifest" href="manifest.json">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            font-family: 'Arial', sans-serif;
-        }
-
-        .open-btn {
-            width: 80%;
-            max-width: 400px;
-            height: 80px;
-            background: #ffffff;
-            color: #2575fc;
-            font-size: 2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .open-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-        }
-
-        .open-btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PRONOTE</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-    <button class="open-btn" onclick="openPronote()">Ouvrir PRONOTE</button>
-
-    <script>
-        // Forcer le reload à chaque ouverture
-        window.onload = () => {
-            // Ajoute un paramètre unique pour éviter le cache
-            const url = new URL(window.location.href);
-            url.searchParams.set('nocache', Date.now());
-            if (!window.location.href.includes('nocache')) {
-                window.location.href = url.toString();
-            }
-        };
-
-        function openPronote() {
-            // Redirection vers Pronote avec paramètre anti-cache
-            const url = "https://0421691k.index-education.net/pronote/?nocache=" + Date.now();
-            window.location.href = url;
-        }
-    </script>
+  <iframe src="https://bio.site/mgpnote"></iframe>
 </body>
 </html>
